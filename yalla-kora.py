@@ -8,10 +8,10 @@ page = requests.get(f"https://www.yallakora.com/match-center?date={date}")
 def main(page):
 
     src = page.content
-    soap = BeautifulSoup(src, "lxml")
+    soup = BeautifulSoup(src, "lxml")
     matches_details = []
 
-    championships = soap.find_all("div", {'class': 'matchCard'})
+    championships = soup.find_all("div", {'class': 'matchCard'})
 
     def get_match_info(championships):
         championship_title = championships.contents[1].find("h2").text.strip()
@@ -29,7 +29,7 @@ def main(page):
 
             # Add Match info to matches details
             matches_details.append(
-                {"Champoinon": championship_title, "team A": team_A, "team B": team_B, "match time": match_time,
+                {"Championship": championship_title, "team A": team_A, "team B": team_B, "match time": match_time,
                  "score": score})
     for i in range(len(championships)):
             get_match_info(championships[i])
