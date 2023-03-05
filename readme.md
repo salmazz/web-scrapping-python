@@ -1,4 +1,4 @@
-# Web-Scraping-with-Python
+# Web Scrapping with python
 Web scraping is a data extraction process used to extract data from different websites and store them in a desired file format like csv,excel etc. 
 to perform web scraping there are few modules available in the market which can be used for web sraping. 
 
@@ -45,3 +45,16 @@ pip install beautifulsoup4
   <li> Once the HTML is fetched and parsed, the next step is to manipulate the tree using BeautifulSoup's functions to get our job done.
   <li> This tutorial will teach you how to get started and traverse the tree.
 </ol>
+
+#### To Open the result in excel sheet with arabic words 
+
+<ol>
+<li>Open Excel on a blank workbook </li>
+<li>Within the Data tab, click on From Text button (if not activated, make sure an empty cell is selected)</li>
+<li>Browse and select the CSV file</li>
+<li>In the Text Import Wizard, change the File_origin to "Unicode (UTF-8)"</li>
+<li>Go next and from the Delimiters, select the delimiter used in your file e.g. comma</li>
+<li>Finish and select where to import the data</li>
+</ol>
+
+The Arabic characters should show correctly.
