@@ -1,13 +1,22 @@
 import requests
 from bs4 import BeautifulSoup
-import  csv
+import csv
+import os
+import datetime
 
-date = input("Please enter a Date in the following format DD/MM/YYYY: ")
+# Save the date in value
+date = input("Please enter a Date in the following format MM/DD/YYYY: ")
+# Url of the website yalla kora
 page = requests.get(f"https://www.yallakora.com/match-center?date={date}")
+# Save the data in the folder
+date_obj = datetime.datetime.strptime(date, "%m/%d/%Y")
+date_str = date_obj.strftime("%Y-%m-%d_%H-%M-%S")
+dir_name = date_obj.strftime("%Y-%m-%d_%H-%M-%S")
+file_name = f"{dir_name}/match_details_{date.replace('/', '-')}.csv"
 
 def main(page):
-
     src = page.content
+
     soup = BeautifulSoup(src, "lxml")
     matches_details = []
 
@@ -34,9 +43,13 @@ def main(page):
     for i in range(len(championships)):
             get_match_info(championships[i])
 
+    if not os.path.exists(dir_name):
+        os.makedirs(dir_name)
+
+   # Check if the date have data
     if matches_details:
         keys = matches_details[0].keys()
-        with open('F:\\webscrapping\\match_details.csv', 'w', newline='', encoding='utf-8', errors="ignore") as output_file:
+        with open(file_name, 'w', newline='', encoding='utf-8', errors="ignore") as output_file:
             dict_writer = csv.DictWriter(output_file,keys)
             dict_writer.writeheader()
             dict_writer.writerows(matches_details)

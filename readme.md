@@ -23,7 +23,10 @@ pip install requests
 pip install beautifulsoup4
 ```
 
-    
+``` 
+pip install python-csv
+```
+
 </ol>
 
 
